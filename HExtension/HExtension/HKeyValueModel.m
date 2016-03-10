@@ -157,9 +157,12 @@
             if (clazz) result=[clazz modelsWithArray:(NSArray *)value];
         }
     }else if([value isKindOfClass:[NSDictionary class]]){
-        if ([self respondsToSelector:@selector(classForProperty)]) {
-            Class clazz=self.classForProperty[ivar.propertyName];
-            if (clazz) result=[clazz modelWithDictionary:(NSDictionary *)value];
+        if(!ivar.isFoundation){
+            if ([value isKindOfClass:[NSDictionary class]]) {
+                result = [NSClassFromString(ivar.type) modelWithDictionary:value];
+            }
+        }else{
+            result = value;
         }
     }
     return result;

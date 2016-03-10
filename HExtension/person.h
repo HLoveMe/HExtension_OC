@@ -14,4 +14,5 @@
  /**保存photo对象*/
  /**实现*/
 @property(nonatomic,strong)NSMutableArray *photos;
+@property(nonatomic,strong)photo *one;
 @end

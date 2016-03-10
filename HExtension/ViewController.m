@@ -11,6 +11,7 @@
 #import "twoViewController.h"
 #import "thereController.h"
 #import "fourViewController.h"
+#import "testModel.h"
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSArray<NSString *> *titles;
@@ -35,6 +36,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
+    [testModel modelWithDictionary:nil];
+    
 }
 #pragma -mark TableView代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

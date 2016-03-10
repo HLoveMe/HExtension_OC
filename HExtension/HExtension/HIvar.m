@@ -28,8 +28,11 @@
     if ([type containsString:@"@"]) {
        type= [type substringFromIndex:2];
        type= [type substringToIndex:type.length-1];
+       if ([NSClassFromString(type) isSubclassOfClass:NSClassFromString(@"HKeyValueModel")]) {
+            self.isFoundation = NO;
+        }
     }
     self.type=type;
-    
+   
 }
 @end

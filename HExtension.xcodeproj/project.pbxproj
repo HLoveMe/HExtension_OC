@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2442E331C9153FE0005AF38 /* testModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2442E321C9153FE0005AF38 /* testModel.m */; };
 		B2539B041C3F6A4200D1BD73 /* thereController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2539B031C3F6A4200D1BD73 /* thereController.m */; };
 		B2539B081C3F6A7800D1BD73 /* student.m in Sources */ = {isa = PBXBuildFile; fileRef = B2539B071C3F6A7800D1BD73 /* student.m */; };
 		B2539B0B1C3F768400D1BD73 /* fourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2539B0A1C3F768400D1BD73 /* fourViewController.m */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B2442E311C9153FE0005AF38 /* testModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testModel.h; sourceTree = "<group>"; };
+		B2442E321C9153FE0005AF38 /* testModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testModel.m; sourceTree = "<group>"; };
 		B2539B021C3F6A4200D1BD73 /* thereController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thereController.h; sourceTree = "<group>"; };
 		B2539B031C3F6A4200D1BD73 /* thereController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thereController.m; sourceTree = "<group>"; };
 		B2539B061C3F6A7800D1BD73 /* student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = student.h; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				B28968761C3F5ADB00D1803E /* AppDelegate.m */,
 				B28968781C3F5ADB00D1803E /* ViewController.h */,
 				B28968791C3F5ADB00D1803E /* ViewController.m */,
+				B2442E311C9153FE0005AF38 /* testModel.h */,
+				B2442E321C9153FE0005AF38 /* testModel.m */,
 				B28968BA1C3F5E6000D1803E /* Model */,
 				B28968B01C3F5DD800D1803E /* viewControllers */,
 				B289687E1C3F5ADB00D1803E /* Assets.xcassets */,
@@ -391,6 +396,7 @@
 				B2E7CCA01C5C9D7400355BC2 /* HArhiever.m in Sources */,
 				B289687A1C3F5ADB00D1803E /* ViewController.m in Sources */,
 				B2539B041C3F6A4200D1BD73 /* thereController.m in Sources */,
+				B2442E331C9153FE0005AF38 /* testModel.m in Sources */,
 				B28968771C3F5ADB00D1803E /* AppDelegate.m in Sources */,
 				B28968B91C3F5E4000D1803E /* newsModel.m in Sources */,
 				B28968C51C3F665F00D1803E /* twoViewController.m in Sources */,

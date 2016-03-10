@@ -38,7 +38,11 @@
                                       
                                       @{                                      //person
                                           @"name":@"ZM",
-                                          @"address":@"四川"
+                                          @"address":@"四川",
+                                          @"one":@{
+                                                    @"name":@"HHH",
+                                                    @"width":@100
+                                                  }
                                           }]
                          };
     _arr = [person modelsWithArray:dic[@"persons"]];
