@@ -156,10 +156,13 @@
             Class clazz  =  self.classInArray[ivar.propertyName];
             if (clazz) result=[clazz modelsWithArray:(NSArray *)value];
         }
+        if (!result) {
+            result = value;
+        }
     }else if([value isKindOfClass:[NSDictionary class]]){
         if(!ivar.isFoundation){
             if ([value isKindOfClass:[NSDictionary class]]) {
-                result = [NSClassFromString(ivar.type) modelWithDictionary:value];
+                result = [NSClassFromString(ivar.type) modelWithDictionary:(NSDictionary *)value];
             }
         }else{
             result = value;
