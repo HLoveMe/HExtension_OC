@@ -15,15 +15,44 @@
 -(NSDictionary <NSString *,Class >*)classInArray;
 @end
 @interface HKeyValueModel : HArhiever<modelProtocol>
- /**字典转为模型*/
+/**
+ *  字典转为模型
+ *
+ *  @param dictionary
+ *
+ *  @return
+ */
 +(id)modelWithDictionary:(NSDictionary *)dictionary;
- /**字典数组转为模型数组*/
+/**
+ *  字典数组转为模型数组
+ *
+ *  @param array
+ *
+ *  @return
+ */
 +(NSMutableArray *)modelsWithArray:(NSArray <NSDictionary *>*)array;
- /** 字典 NSData-----模型*/
+/**
+ *  字典 NSData-----模型
+ *
+ *  @param data
+ *
+ *  @return
+ */
 +(id)modelFromDictionaryData:(NSData *)data;
- /** 数组 NSData-----模型*/
+/**
+ *  数组 NSData-----模型
+ *
+ *  @param data
+ *
+ *  @return
+ */
 +(NSMutableArray*)modelsFromArrayData:(NSData *)data;
-
+/**
+ *  模型转字典
+ *
+ *  @return 
+ */
+-(NSDictionary *)dictionary;
 
 /**
  *  处理一些简单GET的请求 网络返回数据位 JSON字典
@@ -41,6 +70,12 @@
  *  @param complete    得到模型数据在这里处理
  */
 +(void)POSTdealDataByGetWithUrl:(NSString *)url  argumentDic:(NSDictionary *)argumentDic handle:(id (^)(NSDictionary *jsonDic,NSError *error))handle completeInMainThread:(void(^)(NSMutableArray *modelArray))complete;
+@end
 
+@interface NSArray (KHeyValue)
++(NSArray *)arrayByArray:(NSArray *)source;
+@end
 
+@interface NSDictionary (HKeyValue)
++(NSDictionary *)dictionaryByDictionary:(NSDictionary *)source;
 @end

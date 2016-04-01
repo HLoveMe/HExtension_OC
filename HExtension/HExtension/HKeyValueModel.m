@@ -50,6 +50,45 @@
     }
     return dataArray;
 }
+-(NSDictionary *)dictionary{
+    __weak typeof(self) this = self;
+    __block NSMutableDictionary *content = [NSMutableDictionary dictionary];
+    __block NSMutableArray<NSString *> *propertys = [NSMutableArray array];
+    [self.class enumerateIvarsWithBlock:^(HIvar *ivar, BOOL *stop) {
+        if (ivar.isFoundation) {  //系统提供的类
+            id value  = [this valueForKey:ivar.propertyName];
+            if (value) {
+                if ([value isKindOfClass:[NSArray class]]) {
+                    NSArray *array = value;
+                    if (array.count==0) {
+                        content[ivar.propertyName] = value;
+                    }else{
+                        content[ivar.propertyName]=[NSArray arrayByArray:array];
+                    }
+                }else if([value isKindOfClass:[NSDictionary class]]){
+                    if ([(NSDictionary *)value allKeys].count ==0) {
+                        content[ivar.propertyName] = value;
+                    }else{
+                    content[ivar.propertyName] = [NSDictionary dictionaryByDictionary:value];
+                    }
+
+                }else{
+                  [propertys addObject:ivar.propertyName];
+                }
+            }
+        }else{//是继承 HKeyValueModel 的类对象
+            HKeyValueModel *model = [this valueForKey:ivar.propertyName];
+            if (model) {
+                NSDictionary * dic = [model dictionary];
+                content[ivar.propertyName] = dic;
+            }
+        }
+    }];
+    [content addEntriesFromDictionary:[self dictionaryWithValuesForKeys:propertys]];
+    [content removeObjectForKey:@"isa"];
+    return  content;
+}
+
 +(void)GETdealDataByGetWithUrl:(NSString *)str   handle:(id (^)(NSDictionary *jsonDic,NSError *error))handle completeInMainThread:(void(^)(NSMutableArray * modelArray)) complete{
     NSURL *url=[NSURL URLWithString:str];
     NSURLRequest *request=[NSURLRequest requestWithURL:url];
@@ -189,5 +228,46 @@
         classBlock(currentClazz,&stop);
         currentClazz=class_getSuperclass(currentClazz);
     }
+}
+@end
+@implementation NSArray (KHeyValue)
++(NSArray *)arrayByArray:(NSArray *)source{
+    NSMutableArray *content = [NSMutableArray array];
+    [source enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if([obj isKindOfClass:[NSArray class]]){
+            NSArray *temp = [NSArray arrayByArray:obj];
+            [content addObject:temp];
+        }else if([obj isKindOfClass:[NSDictionary class]]){
+            NSDictionary *temp = [NSDictionary dictionaryByDictionary:obj];
+            [content addObject:temp];
+        }else if ([obj isKindOfClass:[HKeyValueModel class]]){
+            NSDictionary *temp = [obj dictionary];
+            [content addObject:temp];
+        }else{
+            [content addObject:obj];
+        }
+    }];
+    return content;
+}
+@end
+@implementation NSDictionary(KHeyValue)
++(NSDictionary *)dictionaryByDictionary:(NSDictionary *)source{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    [source enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if([obj isKindOfClass:[NSArray class]]){
+            NSArray *temp = [NSArray arrayByArray:obj];
+            dic[key] = temp;
+        }else if([obj isKindOfClass:[NSDictionary class]]){
+            NSDictionary *temp = [NSDictionary dictionaryByDictionary:obj];
+            dic[key]= temp;
+        }else if ([obj isKindOfClass:[HKeyValueModel class]]){
+            NSDictionary *temp = [obj dictionary];
+            dic[key]= temp;
+        }else{
+            dic[key]= obj;
+        }
+    }];
+    return dic;
 }
 @end

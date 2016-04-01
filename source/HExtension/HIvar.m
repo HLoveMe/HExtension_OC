@@ -23,13 +23,21 @@
     }else{
         self.propertyName=[name substringFromIndex:1];
     }
-    
+    self.isFoundation = YES;
     NSString *type=[NSString stringWithUTF8String:ivar_getTypeEncoding(ivar)];
     if ([type containsString:@"@"]) {
        type= [type substringFromIndex:2];
        type= [type substringToIndex:type.length-1];
+       if ([NSClassFromString(type) isSubclassOfClass:NSClassFromString(@"HKeyValueModel")]) {
+            self.isFoundation = NO;
+        }
     }
     self.type=type;
-    
+   
 }
+-(NSString *)description{
+    NSMutableString *content = [NSMutableString stringWithFormat:@"PropertyName:%@    isFoundation:%d   type:%@",self.propertyName,self.isFoundation,self.type];
+    return content;
+}
+
 @end

@@ -24,6 +24,7 @@
  /** 数组 NSData-----模型*/
 +(NSMutableArray*)modelsFromArrayData:(NSData *)data;
 
+-(NSDictionary *)dictionary;
 
 /**
  *  处理一些简单GET的请求 网络返回数据位 JSON字典
@@ -41,6 +42,12 @@
  *  @param complete    得到模型数据在这里处理
  */
 +(void)POSTdealDataByGetWithUrl:(NSString *)url  argumentDic:(NSDictionary *)argumentDic handle:(id (^)(NSDictionary *jsonDic,NSError *error))handle completeInMainThread:(void(^)(NSMutableArray *modelArray))complete;
+@end
 
+@interface NSArray (KHeyValue)
++(NSArray *)arrayByArray:(NSArray *)source;
+@end
 
+@interface NSDictionary (HKeyValue)
++(NSDictionary *)dictionaryByDictionary:(NSDictionary *)source;
 @end
