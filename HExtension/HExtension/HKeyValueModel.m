@@ -243,6 +243,8 @@
         }else if ([obj isKindOfClass:[HKeyValueModel class]]){
             NSDictionary *temp = [obj dictionary];
             [content addObject:temp];
+        }else if([obj isKindOfClass:[NSURL class]]){
+            [content addObject:[(NSURL *)obj absoluteString]];
         }else{
             [content addObject:obj];
         }
@@ -253,7 +255,6 @@
 @implementation NSDictionary(KHeyValue)
 +(NSDictionary *)dictionaryByDictionary:(NSDictionary *)source{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    
     [source enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if([obj isKindOfClass:[NSArray class]]){
             NSArray *temp = [NSArray arrayByArray:obj];
@@ -264,6 +265,8 @@
         }else if ([obj isKindOfClass:[HKeyValueModel class]]){
             NSDictionary *temp = [obj dictionary];
             dic[key]= temp;
+        }else if([obj isKindOfClass:[NSURL class]]){
+            dic[key]=[(NSURL *)obj absoluteString];
         }else{
             dic[key]= obj;
         }
