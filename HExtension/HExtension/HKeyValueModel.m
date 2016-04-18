@@ -104,7 +104,6 @@
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     complete(models);
                 });
-                
             }else{
                 id model=[self modelWithDictionary:result];
                 dispatch_sync(dispatch_get_main_queue(), ^{
@@ -172,10 +171,11 @@
 -(NSObject *)valueFromValue:(NSObject *)value toClassIvar:(HIvar *)ivar  {
     NSObject *result;
     if([value isKindOfClass:[NSNumber class]]){
-        /**NSNumber  ----->  */
-        if ([ivar.type containsString:NSStringFromClass([NSString class])]) {
+        /**NSNumber  ----->NSString */
+        if ([ivar.type containsString:@"String"]) {
             result=[[NSMutableString alloc]initWithFormat:@"%@",value];
         }else{
+            //i f d f b NSNumber-->
             result=value;
         }
     }else if ([value isKindOfClass:[NSString class]]){
@@ -187,6 +187,7 @@
             NSString *str=(NSString *)value;
             result=[formatter numberFromString:str];
         }else{
+            //d i f l B
             result=[[NSMutableString alloc]initWithFormat:@"%@",value];
         }
     }else if ([value isKindOfClass:[NSArray class]]){
@@ -206,6 +207,8 @@
         }else{
             result = value;
         }
+    }else{
+           result = value;
     }
     return result;
 }

@@ -15,7 +15,7 @@ HKeyValueModel 字典转模型的基类
  /**
     1:类中的属性名为   @“ID”
     2:字典的key名为    @“id”
-    该方法返回  @{@“ID”:@"id"}
+    该方法返回  @{@“ID”:@"id"，...}
   */
 -(NSDictionary *)PropertyNameForKey{return  nil;}
  /**
@@ -36,7 +36,8 @@ HKeyValueModel 字典转模型的基类
                                                                   float  long)
 
  2  NSString
-    NSMutableString   >>        NSURL  NSNumber NSMutableString
+   NSMutableString   >>        NSURL  NSNumber NSMutableString (int  double
+                                                             float  long)
 
  3  NSArray           >>        NSArray<Model *>*
 
