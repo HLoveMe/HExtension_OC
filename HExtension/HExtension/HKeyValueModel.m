@@ -182,13 +182,13 @@
         /**NSString NSMutableString  ------>NSURL  NSNumber NSMutableString*/
         if ([ivar.type containsString:NSStringFromClass([NSURL class])]) {
             result=[NSURL URLWithString:(NSString *)value];
-        }else if([ivar.type containsString:NSStringFromClass([NSNumber class])]){
+        }else if([ivar.type containsString:@"String"]){
+            result=[[NSMutableString alloc]initWithFormat:@"%@",value];
+        }else{
+            //d i f l B Number
             NSNumberFormatter *formatter=[[NSNumberFormatter alloc]init];
             NSString *str=(NSString *)value;
             result=[formatter numberFromString:str];
-        }else{
-            //d i f l B
-            result=[[NSMutableString alloc]initWithFormat:@"%@",value];
         }
     }else if ([value isKindOfClass:[NSArray class]]){
         /**模型数组*/
