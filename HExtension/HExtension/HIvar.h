@@ -2,10 +2,9 @@
 //  HIvar.h
 //  我的模型字典
 //
-//  Created by space on 15/12/2.
-//  Copyright © 2015年 Space. All rights reserved.
+//  Created by ZZH/github:HLoveMe on 16/3/24.
+//  Copyright © 2016年 Space. All rights reserved.
 //
-
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 @interface HIvar : NSObject

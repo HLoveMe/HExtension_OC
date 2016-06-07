@@ -2,8 +2,8 @@
 //  Header.h
 //  我的模型字典
 //
-//  Created by space on 15/12/2.
-//  Copyright © 2015年 Space. All rights reserved.
+//  Created by ZZH/github:HLoveMe on 16/3/24.
+//  Copyright © 2016年 Space. All rights reserved.
 //
 HIvar是对属性的包装
 HArhiever 是用于序列化和反序列化
@@ -12,7 +12,7 @@ HKeyValueModel 字典转模型的基类
 
 1：需要解析的类继承 HKeyValueModel 就可以直接解析
 2：选择实现对应方法 特殊处理一些属性
- /**
+ /**   字典和属性名字不匹配
     1:类中的属性名为   @“ID”
     2:字典的key名为    @“id”
     该方法返回  @{@“ID”:@"id"，...}

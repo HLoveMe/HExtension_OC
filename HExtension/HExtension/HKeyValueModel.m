@@ -2,8 +2,8 @@
 //  HKeyValueModel.m
 //  我的模型字典
 //
-//  Created by space on 15/12/2.
-//  Copyright © 2015年 Space. All rights reserved.
+//  Created by ZZH/github:HLoveMe on 16/3/24.
+//  Copyright © 2016年 Space. All rights reserved.
 //
 
 #import "HKeyValueModel.h"
@@ -56,24 +56,26 @@
     __block NSMutableArray<NSString *> *propertys = [NSMutableArray array];
     [self.class enumerateIvarsWithBlock:^(HIvar *ivar, BOOL *stop) {
         if (ivar.isFoundation) {  //系统提供的类
-            id value  = [this valueForKey:ivar.propertyName];
-            if (value) {
-                if ([value isKindOfClass:[NSArray class]]) {
-                    NSArray *array = value;
-                    if (array.count==0) {
-                        content[ivar.propertyName] = value;
+            if (![ivar.propertyName isEqualToString:@"isa"]) {
+                id value  = [this valueForKey:ivar.propertyName];
+                if (value) {
+                    if ([value isKindOfClass:[NSArray class]]) {
+                        NSArray *array = value;
+                        if (array.count==0) {
+                            content[ivar.propertyName] = value;
+                        }else{
+                            content[ivar.propertyName]=[NSArray arrayByArray:array];
+                        }
+                    }else if([value isKindOfClass:[NSDictionary class]]){
+                        if ([(NSDictionary *)value allKeys].count ==0) {
+                            content[ivar.propertyName] = value;
+                        }else{
+                            content[ivar.propertyName] = [NSDictionary dictionaryByDictionary:value];
+                        }
+                        
                     }else{
-                        content[ivar.propertyName]=[NSArray arrayByArray:array];
+                        [propertys addObject:ivar.propertyName];
                     }
-                }else if([value isKindOfClass:[NSDictionary class]]){
-                    if ([(NSDictionary *)value allKeys].count ==0) {
-                        content[ivar.propertyName] = value;
-                    }else{
-                    content[ivar.propertyName] = [NSDictionary dictionaryByDictionary:value];
-                    }
-
-                }else{
-                  [propertys addObject:ivar.propertyName];
                 }
             }
         }else{//是继承 HKeyValueModel 的类对象
@@ -85,7 +87,6 @@
         }
     }];
     [content addEntriesFromDictionary:[self dictionaryWithValuesForKeys:propertys]];
-    [content removeObjectForKey:@"isa"];
     return  content;
 }
 
